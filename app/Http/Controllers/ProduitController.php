@@ -65,6 +65,43 @@ class ProduitController extends Controller
         return Produit::all();
     }
 
+
+    /**
+     * Enregistre les information du produit dans la base de données
+     * @OA\Get (
+     *     path="/produit",
+     *     tags={"Recherche Produit"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="nom",
+     *                         type="string",
+     *                         example="ballon"
+     *                     ),
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="description",
+     *                         type="string",
+     *                         example="ballon pou enfant"
+     *                     )
+     *                     
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -85,12 +122,44 @@ class ProduitController extends Controller
         //
     }
 
-    /**
+
+
+      /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    /**
+     * Affiche Tous produits contenant le nom rechercher dans sa description ou libellé
+     * @OA\Get (
+     *     path="/produit/nomProduit",
+     *     tags={"produit"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="nom",
+     *                         type="strin",
+     *                         example="ballon"
+     *                     )
+     *                     
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+
+  
     public function show($id)
     {
 

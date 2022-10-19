@@ -56,6 +56,41 @@
                 }
             }
         },
+        "/produit/nomProduit": {
+            "get": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": "Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
+                "operationId": "e037c7d527206b5e598700bcf8dbb553",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "nom": {
+                                                        "type": "strin",
+                                                        "example": "ballon"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/projects": {
             "get": {
                 "responses": {
