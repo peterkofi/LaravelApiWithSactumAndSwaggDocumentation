@@ -56,13 +56,25 @@
                 }
             }
         },
-        "/produit/nomProduit": {
+        "/produit/search/nomProduit": {
             "get": {
                 "tags": [
                     "produit"
                 ],
-                "summary": "Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
-                "operationId": "e037c7d527206b5e598700bcf8dbb553",
+                "summary": " Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
+                "operationId": "17e067e206203ef149ad25b89d1cf315",
+                "parameters": [
+                    {
+                        "name": "produit",
+                        "in": "path",
+                        "description": "produit designe tous les produits contenant le nom rechercher dans sa description ou libellé",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "success",
@@ -75,7 +87,7 @@
                                             "items": {
                                                 "properties": {
                                                     "nom": {
-                                                        "type": "strin",
+                                                        "type": "string",
                                                         "example": "ballon"
                                                     }
                                                 },

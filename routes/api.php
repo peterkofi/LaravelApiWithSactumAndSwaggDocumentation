@@ -28,19 +28,20 @@ use Illuminate\Support\Facades\Route;
    
 
     // Route::resource('/produits', ProduitController::class);
+    // Route::resource('/clients', ProduitController::class);
     
     // public route
     //------------------//
+    
     // All get
 
-    /*
     Route::get('/clients',[ClientController::class,'index']);
     Route::get('/commands',[CommandeController::class,'index']);
     Route::get('/produits',[ProduitController::class,'index']);
     Route::get('/coursiers',[CoursierController::class,'index']);
     Route::get('/marchands',[MarchandController::class,'index']);
-    */
 
+    //All search
     Route::get('/produits/search/{produit}',[ProduitController::class,'search']);
     Route::group(['middleware' => ['auth:sanctum']], function(){
 

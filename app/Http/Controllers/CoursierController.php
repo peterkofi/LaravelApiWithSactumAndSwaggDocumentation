@@ -27,6 +27,16 @@ class CoursierController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nom'=> 'required',
+            'prenom'=>'required',
+            'contact'=>'required',
+            'adresse'=>'required'
+        ]);
+
+        return Coursier::create($request->all());
+       
         //
     }
 
@@ -38,6 +48,8 @@ class CoursierController extends Controller
      */
     public function show($id)
     {
+
+        return Coursier::find($id);
         //
     }
 
@@ -48,8 +60,13 @@ class CoursierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
+        $coursier=Coursier::find($id);
+        $coursier->update($request->all());
+
+        return $coursier;
         //
     }
 
@@ -61,6 +78,7 @@ class CoursierController extends Controller
      */
     public function destroy($id)
     {
+        $
         //
     }
 }

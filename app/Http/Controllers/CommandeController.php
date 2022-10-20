@@ -25,7 +25,10 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            
+        ]);
+    
     }
 
     /**
@@ -36,6 +39,8 @@ class CommandeController extends Controller
      */
     public function show($id)
     {
+
+       return Command::find($id);
         //
     }
 

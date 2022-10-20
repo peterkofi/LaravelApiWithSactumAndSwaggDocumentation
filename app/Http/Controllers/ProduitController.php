@@ -15,11 +15,12 @@ class ProduitController extends Controller
 
 
      /**
-     * Affiche Tous produits se trouvant dans la base de données
+     * 
      * @OA\Get (
      *     path="/produit",
      *     tags={"produit"},
-     *     @OA\Response(
+     *   summary="Affiche Tous produits se trouvant dans la base de données",  
+     * @OA\Response(
      *         response=200,
      *         description="success",
      *         @OA\JsonContent(
@@ -70,7 +71,7 @@ class ProduitController extends Controller
      * Enregistre les information du produit dans la base de données
      * @OA\Get (
      *     path="/produit",
-     *     tags={"Recherche Produit"},
+     *     tags={"produit"},
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -130,13 +131,24 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
-     * Affiche Tous produits contenant le nom rechercher dans sa description ou libellé
+     *
      * @OA\Get (
-     *     path="/produit/nomProduit",
+     *     path="/produit/search/nomProduit",
      *     tags={"produit"},
-     *     @OA\Response(
+     *     summary=" Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
+     *      @OA\Parameter(
+     *         name="produit",
+     *         in="path",
+     *         description="produit designe tous les produits contenant le nom rechercher dans sa description ou libellé",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Response(
      *         response=200,
      *         description="success",
      *         @OA\JsonContent(
@@ -147,7 +159,7 @@ class ProduitController extends Controller
      *                     type="object",
      *                     @OA\Property(
      *                         property="nom",
-     *                         type="strin",
+     *                         type="string",
      *                         example="ballon"
      *                     )
      *                     
@@ -190,7 +202,9 @@ class ProduitController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
      */
+
     public function destroy($id)
     {
 
