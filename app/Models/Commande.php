@@ -10,4 +10,9 @@ class Commande extends Model
     use HasFactory;
     protected $table="commandes";
    
+    protected $fillable=[
+       "idClient",
+       "idProduit",
+       "idClient"
+    ];
 }

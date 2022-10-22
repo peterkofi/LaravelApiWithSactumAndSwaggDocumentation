@@ -1,77 +1,118 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Mall RDC",
-        "version": "0.1"
+        "title": "Mall DRC API",
+        "version": "1.0"
     },
     "paths": {
-        "/produit": {
+        "/categorie": {
             "get": {
                 "tags": [
-                    "produit"
+                    "categorie"
                 ],
-                "summary": "Affiche Tous produits se trouvant dans la base de données",
-                "operationId": "6c9bbc2a07125b8d051f5df739b33dcf",
+                "summary": "Affiche Toutes les categories se trouvant dans la base de données",
+                "operationId": "3098b3025960cb15ab87d997c9754f88",
                 "responses": {
                     "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "rows": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "_id": {
-                                                        "type": "number",
-                                                        "example": "1"
-                                                    },
-                                                    "title": {
-                                                        "type": "string",
-                                                        "example": "example title"
-                                                    },
-                                                    "content": {
-                                                        "type": "string",
-                                                        "example": "example content"
-                                                    },
-                                                    "updated_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    },
-                                                    "created_at": {
-                                                        "type": "string",
-                                                        "example": "2021-12-11T09:25:53.000000Z"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "categorie"
+                ],
+                "summary": "Enregistrer une categorie",
+                "operationId": "saveCategorie",
+                "responses": {
+                    "201": {
+                        "description": "Enregistremnt avec success"
+                    },
+                    "405": {
+                        "description": "Invalid input"
                     }
                 }
             }
         },
-        "/produit/search/nomProduit": {
+        "/categorie/{idCategorie}": {
             "get": {
                 "tags": [
-                    "produit"
+                    "categorie"
                 ],
-                "summary": " Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
-                "operationId": "17e067e206203ef149ad25b89d1cf315",
+                "summary": " Affiche Toutes les categories ayant l'Id recherché",
+                "operationId": "4730be719d42fa8083a68f9c43a58aa9",
+                "parameters": [
+                    {
+                        "name": "idCategorie",
+                        "in": "path",
+                        "description": "idCategorie designe l'Id recherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "12"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "visualisation du categorie recherché"
+                    },
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le categorie n'existe pas"
+                    }
+                }
+            }
+        },
+        "/categorie/{categorie}": {
+            "delete": {
+                "tags": [
+                    "categorie"
+                ],
+                "summary": "supprimes le categorie ayant Id specifier à l'argument",
+                "operationId": "destroyCategorie",
+                "parameters": [
+                    {
+                        "name": "categorie",
+                        "in": "path",
+                        "description": "categorie est l'Id du prosui récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "12"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le produit n'existe pas"
+                    }
+                }
+            }
+        },
+        "/categorie/search/libelleCategorie": {
+            "get": {
+                "tags": [
+                    "categorie"
+                ],
+                "summary": " Affiche Toutes les categorie contenant le nom rechercher dans son libellé",
+                "operationId": "searchCategorie",
                 "parameters": [
                     {
                         "name": "produit",
                         "in": "path",
-                        "description": "produit designe tous les produits contenant le nom rechercher dans sa description ou libellé",
+                        "description": "libelleCategorie designe toutes les categories contenant le nom rechercher son libellé",
                         "required": true,
                         "schema": {
                             "type": "integer",
-                            "format": "int64"
+                            "format": "int64",
+                            "example": "chemise"
                         }
                     }
                 ],
@@ -103,11 +144,357 @@
                 }
             }
         },
-        "/projects": {
+        "/Client": {
             "get": {
+                "tags": [
+                    "client"
+                ],
+                "summary": "Affiche Tous Client se trouvant dans la base de données",
+                "operationId": "61c2dbd89f59c781f36065315f85288e",
                 "responses": {
                     "200": {
-                        "description": "Display a listing of projects."
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/client/{client}": {
+            "delete": {
+                "tags": [
+                    "client"
+                ],
+                "summary": "supprimes les client ayant Id specifier à l'argument",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "path",
+                        "description": "client est l'Id du client récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "client n'existe pas"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:client",
+                            "read:client"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/marchands": {
+            "get": {
+                "tags": [
+                    "marchand"
+                ],
+                "summary": "Affiche Tous les marchands se trouvant dans la base de données",
+                "operationId": "d77535f1079b27a301824afaa5b0750a",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/marchands/{marchand}": {
+            "get": {
+                "tags": [
+                    "marchand"
+                ],
+                "summary": "affiche un marchand spécifique ayant Id specifier à l'argument",
+                "operationId": "showMarchand",
+                "parameters": [
+                    {
+                        "name": "marchand",
+                        "in": "path",
+                        "description": "marchand est l'Id du marchand récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "visualisation du produit recherché"
+                    },
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le produit n'existe pas"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:produit",
+                            "read:produit"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/produit": {
+            "get": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": "Affiche Tous produits se trouvant dans la base de données",
+                "operationId": "6c9bbc2a07125b8d051f5df739b33dcf",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/produit/{produit}": {
+            "get": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": "affiche un produit spécifique ayant Id specifier à l'argument",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "produit",
+                        "in": "path",
+                        "description": "produit est l'Id du produit récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "visualisation du produit recherché"
+                    },
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le produit n'existe pas"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:produit",
+                            "read:produit"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": "supprimes les produit ayant Id specifier à l'argument",
+                "operationId": "destroyproduit",
+                "parameters": [
+                    {
+                        "name": "produit",
+                        "in": "path",
+                        "description": "produit est l'Id du produit récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le produit n'existe pas"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:produit",
+                            "read:produit"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/produit/search/nomProduit": {
+            "get": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": " Affiche Tous produits contenant le nom rechercher dans sa description ou libellé",
+                "operationId": "search",
+                "parameters": [
+                    {
+                        "name": "produit",
+                        "in": "path",
+                        "description": "produit designe tous les produits contenant le nom rechercher dans sa description ou libellé",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "nom": {
+                                                        "type": "string b",
+                                                        "example": "ballon"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/produit/detailProduit/{produit}": {
+            "get": {
+                "tags": [
+                    "produit"
+                ],
+                "summary": "affiches les produits recherché ainsi que le detail de sa categorie",
+                "operationId": "detailProduit",
+                "parameters": [
+                    {
+                        "name": "produit",
+                        "in": "path",
+                        "description": "produit est l'Id du produit récherché",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Id Invalide"
+                    },
+                    "404": {
+                        "description": "le produit n'existe pas"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:produit",
+                            "read:produit"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Affiche Tous utilisateurs se trouvant dans la base de données",
+                "operationId": "listUser",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Affiche Tous user se trouvant dans la base de données",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "le nom de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "kofi"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "le nom de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "peterkofi74@gmail.com"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "le mot de passe de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "peter1234"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "401": {
+                        "description": "veillez vous authentifiez"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Add a new pet to the store.",
+                "operationId": "logout",
+                "responses": {
+                    "401": {
+                        "description": "erreur lors de l'insertion"
                     }
                 }
             }

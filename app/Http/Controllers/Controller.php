@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 
 /**
- * @OA\Info(title="Mall RDC", version="0.1")
+ * @OA\Info(title="Mall DRC API", version="1.0")
  */
 
 

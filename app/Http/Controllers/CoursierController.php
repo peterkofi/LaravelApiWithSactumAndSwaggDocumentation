@@ -78,7 +78,7 @@ class CoursierController extends Controller
      */
     public function destroy($id)
     {
-        $
+
         //
     }
 }

@@ -18,6 +18,11 @@ class CreateProduitsTable extends Migration
             $table->string("libelle");
             $table->string("description");
             $table->decimal("prix",15,2);
+            $table->unsignedInteger("idCategorie");
+            $table->foreign("idCategorie")
+                  ->references("id")
+                  ->on("categories")
+                  ->onDelete("cascade");
             $table->timestamps();
         });
     }
